@@ -211,15 +211,15 @@
 
           // Edit these event details as needed
           const title = "The Betrothal Ceremony of Dhamodaran & Nandhini";
-          const location = "St. Antony's Church Cheriyappilly, North Paravur";
+          const location = "At Salavakkam, Tamil Nadu, India";
           const description = "With the blessings of our families, we are delighted to announce the engagement of Mr. Dhamodaran & Ms. Nandhini.As we begin this sacred journey of love and togetherness, we humbly invite you to grace the occasion and bless the couple as they step into a beautiful new chapter of life";
           const startDate = "2025-11-27"; // YYYY-MM-DD (all-day)
           const endDate = "2025-11-27";
 
           // 1) Open Google Calendar in a new tab (all-day event)
-          const gDates = startDate.replace(/-/g, "") + "/" + endDate.replace(/-/g, "");
-          const gUrl = "https://www.google.com/calendar/render?action=TEMPLATE" + "&text=" + encodeURIComponent(title) + "&dates=" + encodeURIComponent(gDates) + "&details=" + encodeURIComponent(description) + "&location=" + encodeURIComponent(location) + "&sf=true&output=xml";
-          window.open(gUrl, "_blank");
+          // const gDates = startDate.replace(/-/g, "") + "/" + endDate.replace(/-/g, "");
+          // const gUrl = "https://www.google.com/calendar/render?action=TEMPLATE" + "&text=" + encodeURIComponent(title) + "&dates=" + encodeURIComponent(gDates) + "&details=" + encodeURIComponent(description) + "&location=" + encodeURIComponent(location) + "&sf=true&output=xml";
+          // window.open(gUrl, "_blank");
 
           // 2) Generate and download .ics (works on iOS/macOS/Android apps that accept .ics)
           const uid = Date.now() + "@damzz";
