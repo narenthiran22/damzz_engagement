@@ -421,8 +421,8 @@ figure {
 #fh5co-event .event-wrap {
   border: 2px solid rgba(0, 0, 0, 0.5);
   padding: 30px;
-  width: 100%;
-  float: left;
+  width: 97%;
+  margin: 10px 10px 10px 5px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
