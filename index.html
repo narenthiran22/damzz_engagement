@@ -135,7 +135,7 @@
                       </div>
                       <div class="event-col">
                         <i class="icon-clock"></i>
-                        <span>09:00 PM</span>
+                        <span>10:00 AM</span>
                       </div>
 					  
                       <p>At <b>Salavakkam,</b> followed by a gracious dinner reception for all</b></p>
@@ -150,7 +150,7 @@
         </div>
       </div>
 
-      <div id="fh5co-gallery" class="fh5co-section-gray">
+      <!-- <div id="fh5co-gallery" class="fh5co-section-gray">
         <div class="container">
           <div class="row">
             <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
@@ -181,7 +181,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <!-- <div class="gototop js-top">
       <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
@@ -214,46 +214,83 @@
     <script src="js/simplyCountdown.js"></script>
     <!-- Main -->
     <script src="js/main.js"></script>
-    <script>
-      // Save / download calendar event for Google Calendar + .ics file for native apps
-      (function () {
-        const btn = document.getElementById("save-date-btn");
-        if (!btn) return;
+   <script>
+(function () {
+  const btn = document.getElementById("save-date-btn");
+  if (!btn) return;
 
-        btn.addEventListener("click", function (e) {
-          e.preventDefault();
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
 
-          // Edit these event details as needed
-          const title = "The Betrothal Ceremony of Dhamodaran & Nandhini";
-          const location = "At Salavakkam, Tamil Nadu, India";
-          const description = "With the blessings of our families, we are delighted to announce the engagement of Mr. Dhamodaran & Ms. Nandhini.As we begin this sacred journey of love and togetherness, we humbly invite you to grace the occasion and bless the couple as they step into a beautiful new chapter of life";
-          const startDate = "2025-11-27"; // YYYY-MM-DD (all-day)
-          const endDate = "2025-11-27";
+    // ==== EDIT EVENT DETAILS HERE ====
+    const title = "The Betrothal Ceremony of Dhamodaran & Nandhini";
+    const location = "Salavakkam, Tamil Nadu, India";
+    const description =
+      "With the blessings of our families, we are delighted to announce the engagement of Mr. Dhamodaran & Ms. Nandhini.\n\n" +
+      "As they begin a sacred journey of love and togetherness, we warmly invite you to grace the occasion and bless the couple.";
 
-          // 1) Open Google Calendar in a new tab (all-day event)
-          // const gDates = startDate.replace(/-/g, "") + "/" + endDate.replace(/-/g, "");
-          // const gUrl = "https://www.google.com/calendar/render?action=TEMPLATE" + "&text=" + encodeURIComponent(title) + "&dates=" + encodeURIComponent(gDates) + "&details=" + encodeURIComponent(description) + "&location=" + encodeURIComponent(location) + "&sf=true&output=xml";
-          // window.open(gUrl, "_blank");
+    const startDate = "2025-11-27";
+    const startTime = "10:00:00";
 
-          // 2) Generate and download .ics (works on iOS/macOS/Android apps that accept .ics)
-          const uid = Date.now() + "@damzz";
-          const dtstamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
-          const icsLines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Dhamodaran Nandhini//EN", "BEGIN:VEVENT", "UID:" + uid, "DTSTAMP:" + dtstamp, "DTSTART;VALUE=DATE:" + startDate.replace(/-/g, ""), "DTEND;VALUE=DATE:" + endDate.replace(/-/g, ""), "SUMMARY:" + title, "LOCATION:" + location, "DESCRIPTION:" + description, "END:VEVENT", "END:VCALENDAR"];
-          const icsContent = icsLines.join("\r\n");
-          const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "dhamodaran_nandhini_save_date.ics";
-          document.body.appendChild(a);
-          a.click();
-          setTimeout(function () {
-            URL.revokeObjectURL(url);
-            a.remove();
-          }, 1000);
-        });
-      })();
-    </script>
+    const endDate = "2025-11-27";
+    const endTime = "12:00:00";
+
+    const timeZone = "Asia/Kolkata";
+    // ==================================”
+
+
+    // Format to YYYYMMDDTHHMMSS
+    function formatICSDate(date, time, tz) {
+      const dt = new Date(`${date}T${time}+05:30`);
+      return dt
+        .toISOString()
+        .replace(/[-:]/g, "")
+        .replace(/\.\d+Z$/, "Z");
+    }
+
+    const dtStart = formatICSDate(startDate, startTime, timeZone);
+    const dtEnd = formatICSDate(endDate, endTime, timeZone);
+
+    const uid = Date.now() + "@event";
+    const dtStamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+
+    const icsContent = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//DhamodaranNandhini Events//EN",
+      "CALSCALE:GREGORIAN",
+      "METHOD:PUBLISH",
+      "BEGIN:VEVENT",
+      "UID:" + uid,
+      "DTSTAMP:" + dtStamp,
+      "DTSTART:" + dtStart,
+      "DTEND:" + dtEnd,
+      "SUMMARY:" + title,
+      "LOCATION:" + location,
+      "DESCRIPTION:" + description.replace(/\n/g, "\\n"),
+      "END:VEVENT",
+      "END:VCALENDAR"
+    ].join("\r\n");
+
+    const blob = new Blob([icsContent], {
+      type: "text/calendar;charset=utf-8",
+    });
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "Dhamodaran_Nandhini_Engagement_Event.ics";
+    document.body.appendChild(a);
+    a.click();
+
+    setTimeout(() => {
+      URL.revokeObjectURL(url);
+      a.remove();
+    }, 800);
+  });
+})();
+</script>
+
     <!-- canvas-confetti (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
