@@ -52,37 +52,36 @@
     <!--[if lt IE 9]>
       <script src="js/respond.min.js"></script>
     <![endif]-->
-	 <style>
-    /* confetti pieces */
-    .confetti-piece {
-      position: fixed;
-      width: 8px;
-      height: 12px;
-      pointer-events: none;
-      opacity: 1;
-      border-radius: 2px;
-    }
+    <style>
+      /* confetti pieces */
+      .confetti-piece {
+        position: fixed;
+        width: 8px;
+        height: 12px;
+        pointer-events: none;
+        opacity: 1;
+        border-radius: 2px;
+      }
 
+      /* Gallery: default 0.6 opacity, full opacity on hover */
+      #fh5co-gallery-list li {
+        opacity: 1;
+        transition: opacity 220ms ease;
+        -webkit-transition: opacity 220ms ease;
+        cursor: default;
+      }
+      #fh5co-gallery-list li:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
 
-    /* Gallery: default 0.6 opacity, full opacity on hover */
-    #fh5co-gallery-list li {
-      opacity:1;
-      transition: opacity 220ms ease;
-      -webkit-transition: opacity 220ms ease;
-      cursor: default;
-    }
-    #fh5co-gallery-list li:hover {
-      opacity: 1;
-      cursor: pointer;
-    }
-
-    /* keep anchor sizing consistent if present */
-    #fh5co-gallery-list li a {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-      </style>
+      /* keep anchor sizing consistent if present */
+      #fh5co-gallery-list li a {
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
   </head>
   <body>
     <div class="fh5co-loader"></div>
@@ -118,7 +117,7 @@
         <div class="overlay"></div>
         <div class="container">
           <div class="row">
-            <div class=" col-md-offset-2 text-center fh5co-heading animate-box">
+            <div class="col-md-offset-2 text-center fh5co-heading animate-box">
               <h2>Events</h2>
             </div>
           </div>
@@ -135,13 +134,13 @@
                       </div>
                       <div class="event-col">
                         <i class="icon-clock"></i>
-                        <span>10:30 AM</span>
+                        <span>11:00 AM</span>
                       </div>
-					  
-                      <p>At <b>Salavakkam,</b> followed by a gracious dinner reception for all</b></p>
-					  
-					  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.6542158265124!2d79.89404689999999!3d12.670662499999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52e24e0b0fc277%3A0x2558fb0e0a644297!2sMVCV%2B7J7%2C%20Salavakkam%2C%20Tamil%20Nadu%20603107!5e0!3m2!1sen!2sin!4v1763297938726!5m2!1sen!2sin" width="350" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>   
-                 </div>
+
+                      <p>At <b>Salavakkam</b></p>
+
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3892.6542158265124!2d79.89404689999999!3d12.670662499999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a52e24e0b0fc277%3A0x2558fb0e0a644297!2sMVCV%2B7J7%2C%20Salavakkam%2C%20Tamil%20Nadu%20603107!5e0!3m2!1sen!2sin!4v1763297938726!5m2!1sen!2sin" width="350" height="250" style="border: 0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -214,82 +213,63 @@
     <script src="js/simplyCountdown.js"></script>
     <!-- Main -->
     <script src="js/main.js"></script>
-   <script>
-(function () {
-  const btn = document.getElementById("save-date-btn");
-  if (!btn) return;
+    <script>
+      (function () {
+        const btn = document.getElementById("save-date-btn");
+        if (!btn) return;
 
-  btn.addEventListener("click", function (e) {
-    e.preventDefault();
+        btn.addEventListener("click", function (e) {
+          e.preventDefault();
 
-    // ==== EDIT EVENT DETAILS HERE ====
-    const title = "The Betrothal Ceremony of Dhamodaran & Nandhini";
-    const location = "Salavakkam, Tamil Nadu, India";
-    const description =
-      "With the blessings of our families, we are delighted to announce the engagement of Mr. Dhamodaran & Ms. Nandhini.\n\n" +
-      "As they begin a sacred journey of love and togetherness, we warmly invite you to grace the occasion and bless the couple.";
+          // ==== EDIT EVENT DETAILS HERE ====
+          const title = "The Betrothal Ceremony of Dhamodaran & Nandhini";
+          const location = "Salavakkam, Tamil Nadu, India";
+          const description = "With the blessings of our families, we are delighted to announce the engagement of Mr. Dhamodaran & Ms. Nandhini.\n\n" + "As they begin a sacred journey of love and togetherness, we warmly invite you to grace the occasion and bless the couple.";
 
-    const startDate = "2025-11-27";
-    const startTime = "10:30:00";
+          const startDate = "2025-11-27";
+          const startTime = "10:30:00";
 
-    const endDate = "2025-11-27";
-    const endTime = "12:00:00";
+          const endDate = "2025-11-27";
+          const endTime = "12:00:00";
 
-    const timeZone = "Asia/Kolkata";
-    // ==================================”
+          const timeZone = "Asia/Kolkata";
+          // ==================================”
 
+          // Format to YYYYMMDDTHHMMSS
+          function formatICSDate(date, time, tz) {
+            const dt = new Date(`${date}T${time}+05:30`);
+            return dt
+              .toISOString()
+              .replace(/[-:]/g, "")
+              .replace(/\.\d+Z$/, "Z");
+          }
 
-    // Format to YYYYMMDDTHHMMSS
-    function formatICSDate(date, time, tz) {
-      const dt = new Date(`${date}T${time}+05:30`);
-      return dt
-        .toISOString()
-        .replace(/[-:]/g, "")
-        .replace(/\.\d+Z$/, "Z");
-    }
+          const dtStart = formatICSDate(startDate, startTime, timeZone);
+          const dtEnd = formatICSDate(endDate, endTime, timeZone);
 
-    const dtStart = formatICSDate(startDate, startTime, timeZone);
-    const dtEnd = formatICSDate(endDate, endTime, timeZone);
+          const uid = Date.now() + "@event";
+          const dtStamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
 
-    const uid = Date.now() + "@event";
-    const dtStamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+          const icsContent = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//DhamodaranNandhini Events//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "BEGIN:VEVENT", "UID:" + uid, "DTSTAMP:" + dtStamp, "DTSTART:" + dtStart, "DTEND:" + dtEnd, "SUMMARY:" + title, "LOCATION:" + location, "DESCRIPTION:" + description.replace(/\n/g, "\\n"), "END:VEVENT", "END:VCALENDAR"].join("\r\n");
 
-    const icsContent = [
-      "BEGIN:VCALENDAR",
-      "VERSION:2.0",
-      "PRODID:-//DhamodaranNandhini Events//EN",
-      "CALSCALE:GREGORIAN",
-      "METHOD:PUBLISH",
-      "BEGIN:VEVENT",
-      "UID:" + uid,
-      "DTSTAMP:" + dtStamp,
-      "DTSTART:" + dtStart,
-      "DTEND:" + dtEnd,
-      "SUMMARY:" + title,
-      "LOCATION:" + location,
-      "DESCRIPTION:" + description.replace(/\n/g, "\\n"),
-      "END:VEVENT",
-      "END:VCALENDAR"
-    ].join("\r\n");
+          const blob = new Blob([icsContent], {
+            type: "text/calendar;charset=utf-8",
+          });
 
-    const blob = new Blob([icsContent], {
-      type: "text/calendar;charset=utf-8",
-    });
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = "Dhamodaran_Nandhini_Engagement_Event.ics";
+          document.body.appendChild(a);
+          a.click();
 
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "Dhamodaran_Nandhini_Engagement_Event.ics";
-    document.body.appendChild(a);
-    a.click();
-
-    setTimeout(() => {
-      URL.revokeObjectURL(url);
-      a.remove();
-    }, 800);
-  });
-})();
-</script>
+          setTimeout(() => {
+            URL.revokeObjectURL(url);
+            a.remove();
+          }, 800);
+        });
+      })();
+    </script>
 
     <!-- canvas-confetti (CDN) -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
@@ -309,7 +289,7 @@
             spread: 60,
             gravity: 0.7,
             origin: { x: originX, y: originY },
-            colors: ['#ef476f', '#ffd166', '#06d6a0', '#118ab2', '#073b4c']
+            colors: ["#ef476f", "#ffd166", "#06d6a0", "#118ab2", "#073b4c"],
           });
 
           setTimeout(() => {
@@ -318,14 +298,14 @@
               spread: 100,
               scalar: 0.9,
               origin: { x: originX, y: originY },
-              colors: ['#ffd166', '#06d6a0', '#118ab2']
+              colors: ["#ffd166", "#06d6a0", "#118ab2"],
             });
           }, 120);
         }
 
-        document.querySelectorAll('#fh5co-gallery-list li').forEach((li) => {
+        document.querySelectorAll("#fh5co-gallery-list li").forEach((li) => {
           li.addEventListener(
-            'mouseenter',
+            "mouseenter",
             function () {
               burstAtElement(li);
             },
@@ -338,11 +318,11 @@
     <script>
       // Remove / disable anchors that don't point anywhere meaningful
       (function () {
-        const galleryAnchors = document.querySelectorAll('#fh5co-gallery-list li > a');
+        const galleryAnchors = document.querySelectorAll("#fh5co-gallery-list li > a");
         galleryAnchors.forEach((a) => {
-          const rawHref = a.getAttribute('href');
+          const rawHref = a.getAttribute("href");
           // treat empty, hash, or javascript:void as "no-op" links
-          if (!rawHref || rawHref.trim() === '' || rawHref.trim() === '#' || /^javascript:/i.test(rawHref.trim()) ) {
+          if (!rawHref || rawHref.trim() === "" || rawHref.trim() === "#" || /^javascript:/i.test(rawHref.trim())) {
             // unwrap: move children out and remove the anchor so click does nothing
             const parent = a.parentNode;
             while (a.firstChild) parent.insertBefore(a.firstChild, a);
